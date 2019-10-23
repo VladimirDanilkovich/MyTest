@@ -98,9 +98,9 @@ jobs:
           
           
           
-      - run:
-          name: add-yarn
-          command: yarn add html2canvas
+   #   - run:
+     #     name: add-yarn
+     #     command: yarn add html2canvas
           
           
     #  - run: 
