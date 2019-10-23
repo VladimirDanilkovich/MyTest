@@ -4,6 +4,7 @@
 #
 version: 2
 jobs:
+
   bilder:
     docker:
       # specify the version you desire here
@@ -15,22 +16,53 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
     working_directory: ~/repo
+    
+    environment:
+      TEST_REPORTS: /tmp/test-reports
             
     steps:
-      - checkout    
+    
+      - checkout  
       - setup_remote_docker
       # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+ #     - restore_cache:
+ #         keys:
+#          - v1-dependencies-{{ checksum "package.json" }}
+#          - v1-dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-     
+#          - v1-dependencies-
+
       - run: npm install
+      - run:
+          name: install-yarn
+          command: yarn
+     # - run:
+        #  name: Install Dependencies
+       #   command: yarn install --frozen-lockfile
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      
+      
       - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+            - ~/.cache/yarn
+
+
+
+
+  #    - save_cache:
+   #       paths:
+    #        - node_modules
+    #      key: v1-dependencies-{{ checksum "package.json" }}
+    #      key: v1-dependencies-{{ checksum "yarn.lock" }}
+          
+#...
+
+          
         
         
       - run:
@@ -47,27 +79,68 @@ jobs:
       - run:
           name: install-mocha
           command: sudo npm install -g mocha
-      - run:
-          name: dev-hub
-          command: . credentials.sh
+      #- run:
+       #   name: dev-hub
+        #  command: . credentials.sh
       - run:
           name: install-web
-          command: npm install selenium-webdriver
+          command: npm install selenium-webdriver --save
           
          
       - run:
           name: install-npm
           command: npm install
           
+          
+      - run:
+          name: install-html2canvas
+          command: npm install html2canvas
+          
+          
+          
+      - run:
+          name: add-yarn
+          command: yarn add html2canvas
+          
+          
+    #  - run: 
+     #     name: take screenshots
+      #    command: . spec_helper.rb
+      
+          
+          
+          
+      - run: make
+      - run: |
+          # tell the operating system to remove the file size limit on core dump files 
+          ulimit -c unlimited
+          ./dump
+      - run:
+          command: |
+            mkdir -p /tmp/test-reports
+            mkdir -p /tmp/artifacts
+          when: always
+     
+          
       - run: 
-          name: run tests
-          command: . TestCycle.sh
+           name: run tests
+           command: . TestCycle.sh
+           
+       
+          
+      - store_artifacts:
+          path: /tmp/artifacts
+          destination: build
+
+      - store_test_results:
+          path: /tmp/test-reports
 
 workflows:
   version: 2
   commit:
     jobs:
       - bilder
+      
   nightly:
     triggers:
       - schedule:
