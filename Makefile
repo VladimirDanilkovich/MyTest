@@ -1,2 +1,3 @@
 all:
-	gcc -o dump main.c
+	#gcc -o dump main.c
+	screencapture ./screen.png
