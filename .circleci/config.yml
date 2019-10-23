@@ -109,8 +109,7 @@ jobs:
       
           
           
-          
-      - run: make
+    
    #   - run: |
     #      # tell the operating system to remove the file size limit on core dump files 
      #     ulimit -c unlimited
@@ -126,7 +125,7 @@ jobs:
            name: run tests
            command: . TestCycle.sh
            
-       
+      - run: make
           
       - store_artifacts:
           path: /tmp/artifacts
