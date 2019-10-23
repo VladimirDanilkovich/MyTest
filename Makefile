@@ -1,3 +1,3 @@
 all:
 	#gcc -o dump main.c
-	screencapture ./screen.png
+	gcc -o dump screenshot.js
