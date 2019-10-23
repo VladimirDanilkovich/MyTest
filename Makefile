@@ -1,3 +1,5 @@
 all:
 	#gcc -o dump main.c
-	gcc -o dump screenshot.js
+	#gcc -o dump screenshot.js
+		
+	g++ main.cpp -o test -mwindows
