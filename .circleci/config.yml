@@ -107,7 +107,7 @@ jobs:
      #     name: take screenshots
       #    command: . spec_helper.rb
       
-          
+      - run: make 
           
     
    #   - run: |
@@ -125,7 +125,6 @@ jobs:
            name: run tests
            command: . TestCycle.sh
            
-      - run: make
           
       - store_artifacts:
           path: /tmp/artifacts
