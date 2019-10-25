@@ -126,6 +126,11 @@ jobs:
            command: . TestCycle.sh
            
           
+      - run: 
+           name: run tests
+           command: . screenshot.java
+           
+           
       - store_artifacts:
           path: /tmp/artifacts
           destination: build
