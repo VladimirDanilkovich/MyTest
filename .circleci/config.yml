@@ -10,6 +10,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:latest
       - image: selenium/standalone-chrome:3.11.0
+      - image: circleci/python:3.6.4
       
       # Specify service dependencies here if necessary  
       # CircleCI maintains a library of pre-built images
@@ -33,6 +34,13 @@ jobs:
 #          - v1-dependencies-
 
       - run: npm install
+      
+      - run:
+          command: |  # use pipenv to install dependencies
+            sudo pip install pipenv
+            pipenv install
+
+      
       - run:
           name: install-yarn
           command: yarn
