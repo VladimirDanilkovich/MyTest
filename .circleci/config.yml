@@ -128,7 +128,7 @@ jobs:
           
       - run: 
            name: run tests
-           command: . screenshot.java
+           command: . screenshot.sh
            
            
       - store_artifacts:
