@@ -121,9 +121,9 @@ jobs:
           when: always
      
           
-      - run: 
-           name: run tests
-           command: . TestCycle.sh
+     # - run: 
+          # name: run tests
+         #  command: . TestCycle.sh
            
           
       - run: 
