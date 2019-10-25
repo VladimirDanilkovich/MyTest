@@ -1,13 +1,4 @@
-//import java.awt.AWTException; 
-//import java.awt.Rectangle; 
-//import java.awt.Toolkit; 
-//import java.awt.Robot; 
-//import java.awt.image.BufferedImage; 
-//import java.io.IOException; 
-//import java.io.File; 
-//import javax.imageio.ImageIO; 
-  
-public class Screenshot { 
+  public class Screenshot { 
     public static final long serialVersionUID = 1L; 
     public static void main(String[] args) 
     { 
