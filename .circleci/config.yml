@@ -104,7 +104,7 @@ jobs:
           
       - run:
           name: install-python
-          command: pip3 install pyautogui
+          command: pip install pyautogui
           
           
       - run:
