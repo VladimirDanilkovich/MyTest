@@ -99,6 +99,10 @@ jobs:
           command: npm install html2canvas
           
       - run:
+          name: install-python
+          command: apt-get install python3-venv
+          
+      - run:
           command: |
             python3 -m venv venv
             . venv/bin/activate
