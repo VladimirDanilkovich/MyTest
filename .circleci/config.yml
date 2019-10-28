@@ -103,6 +103,11 @@ jobs:
           command: sudo apt-get install python3-venv
           
       - run:
+          name: install-python
+          command: pip3 install pyautogui
+          
+          
+      - run:
           command: |
             python3 -m venv venv
             . venv/bin/activate
