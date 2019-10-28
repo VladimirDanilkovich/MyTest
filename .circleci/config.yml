@@ -100,7 +100,7 @@ jobs:
           
       - run:
           name: install-python
-          command: apt-get install python3-venv
+          command: sudo apt-get install python3-venv
           
       - run:
           command: |
