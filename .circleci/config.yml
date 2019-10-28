@@ -102,6 +102,10 @@ jobs:
           name: install-python
           command: sudo apt-get install python3-venv
           
+      - run:
+          name: install-python
+          command: sudo apt-get install python-setuptools
+          
           
       - run:
           name: install-python
