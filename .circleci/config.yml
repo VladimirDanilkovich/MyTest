@@ -102,6 +102,12 @@ jobs:
           name: install-python
           command: sudo apt-get install python3-venv
           
+          
+      - run:
+          name: install-python
+          command: sudo easy_install pip
+          
+          
       - run:
           name: install-python
           command: pip install pyautogui
